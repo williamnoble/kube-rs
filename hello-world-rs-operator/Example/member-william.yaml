@@ -1,0 +1,5 @@
+apiVersion: williamnoble.developer.com/v1
+kind: Member
+metadata:
+  name: william
+spec: {}

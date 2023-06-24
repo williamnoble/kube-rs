@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-operator-rs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-operator-rs
+  template:
+    metadata:
+      labels:
+        app: hello-world-operator-rs
+    spec:
+      serviceAccountName: hello-world-operator-rs-account
+      containers:
+        - name: hello-world-operator-rs
+          image: williamnoble/hello-world-rs-operator:v2
+          resources:
+            requests:
+              memory: "10Mi"
+              cpu: "10m"
+            limits:
+              memory: "20Mi"
+              cpu: "100m"
+          env:
+            - name: KUBERNETES_SERVICE_HOST
+              value: 10.43.0.1
+            - name: RUST_BACKTRACE
+              value: "1"
